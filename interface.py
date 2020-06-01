@@ -26,16 +26,7 @@ class Interface:
 
 
 def resetGrid():
-    algToUse.set('')
-    selectingStart = False
-    startSelected = False
-    selectingEnd = False
-    endSelected = False
-    showStart = False
-    screen.fill((0, 0, 0))
-    for row in rects:
-        for rect in row:
-            pygame.draw.rect(screen, CYAN, rect, 1)
+    os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
 
 
 gridSize = 20
@@ -43,6 +34,7 @@ blockSize = 35
 CYAN = (21, 244, 238)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+startX, startY, endX, endY = 0, 0, 0, 0
 algorithms = ['Depth-First Search']
 nodes = []
 rects = []
@@ -94,7 +86,6 @@ startSelected = False
 selectingEnd = False
 endSelected = False
 showStart = False
-global startLabel
 while running:
     if algToUse.get() and not startSelected:
         startLabel = Label(root,
@@ -118,6 +109,7 @@ while running:
             running = False
             break
         elif event.type == pygame.MOUSEBUTTONDOWN and selectingStart:
+            print('lmao')
             startX, startY = event.pos[0] // 35, event.pos[1] // 35
             try:
                 pygame.draw.rect(screen, GREEN, rects[startX][startY], 0)
