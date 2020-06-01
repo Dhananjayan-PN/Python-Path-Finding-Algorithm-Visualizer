@@ -36,23 +36,23 @@ interface = Interface(grid)
 interface.start()
 
 root = Tk()
-embed = Frame(root, width=1280,
+root.iconbitmap(r'd_icon.ico')
+root.title('Path Finding Algorithm Visualizer')
+
+embed = Frame(root, width=800,
               height=800)  #creates embed frame for pygame window
-embed.grid(columnspan=(600), rowspan=500)  # Adds grid
+embed.grid(columnspan=600, rowspan=500)  # Adds grid
 embed.pack(side=LEFT)  #packs window to the left
-# buttonwin = Frame(root, width=75, height=500)
-# buttonwin.pack(side=LEFT)
+buttonwin = Frame(root, width=480, height=800, bg='black')
+buttonwin.pack(side=LEFT)
 os.environ['SDL_WINDOWID'] = str(embed.winfo_id())
 if platform.system == "Windows":
     os.environ['SDL_VIDEODRIVER'] = 'windib'
 pygame.init()
 screen = pygame.display.set_mode([800, 800])
-pygame.display.set_caption("Path FInding Algorithm Visualizer")
-icon = pygame.image.load('d_icon.ico')
-pygame.display.set_icon(icon)
 screen.fill((0, 0, 0))
-running = True
 
+running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
